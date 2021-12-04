@@ -70,10 +70,12 @@ public class InsertActivity extends AppCompatActivity {
 
         felvetelUzembeHelyezesEve.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                String uzembeHelyezesEveString = felvetelUzembeHelyezesEve.getText().toString().trim();
+                String uzembeHelyezesEveString = felvetelUzembeHelyezesEve.getText().toString()
+                        .trim();
                 try {
                     int uzembeHelyezesEve = Integer.parseInt(uzembeHelyezesEveString);
-                    if (uzembeHelyezesEve >= 1900 && uzembeHelyezesEve <= LocalDate.now().getYear()) {
+                    if (uzembeHelyezesEve >= 1900 && uzembeHelyezesEve <= LocalDate.now().getYear())
+                    {
                         joEv = true;
                         disableButton();
                     }
@@ -83,7 +85,8 @@ public class InsertActivity extends AppCompatActivity {
                     }
                 }
                 catch (NumberFormatException e) {
-                    Toast.makeText(getApplicationContext(), "Az üzembehelyezés évének számnak kell lennie", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Az üzembehelyezés évének " +
+                            "számnak kell lennie", Toast.LENGTH_SHORT).show();
                     joEv = false;
                     disableButton();
                 }
@@ -95,18 +98,23 @@ public class InsertActivity extends AppCompatActivity {
             String modell = felvetelModell.getText().toString().trim();
             String uzembeHelyezesEveString = felvetelUzembeHelyezesEve.getText().toString().trim();
             if (gyarto.isEmpty() || modell.isEmpty() || uzembeHelyezesEveString.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "A mezők értéke nem lehet üres!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "A mezők értéke nem lehet üres!",
+                        Toast.LENGTH_SHORT).show();
             }
             else {
                 try {
                     int uzembeHelyezesEve = Integer.parseInt(uzembeHelyezesEveString);
-                    if (uzembeHelyezesEve >= 1900 && uzembeHelyezesEve <= LocalDate.now().getYear()) {
-                        if (adatbazis.keresesModell(modell).getCount() == 0 && adatbazis.keresesGyarto(gyarto).getCount() == 0) {
+                    if (uzembeHelyezesEve >= 1900 && uzembeHelyezesEve <= LocalDate.now().getYear())
+                    {
+                        if (adatbazis.keresesModell(modell).getCount() == 0 &&
+                                adatbazis.keresesGyarto(gyarto).getCount() == 0) {
                             if (adatbazis.felvetel(gyarto, modell, uzembeHelyezesEve)) {
-                                Toast.makeText(getApplicationContext(), "Sikeres felvétel!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Sikeres felvétel!",
+                                        Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                Toast.makeText(getApplicationContext(), "Sikertelen felvétel!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Sikertelen felvétel!",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                         else {
@@ -114,11 +122,14 @@ public class InsertActivity extends AppCompatActivity {
                         }
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "Az üzembehelyezés évének 1900 után és a mai dátum között kell lennie.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Az üzembehelyezés évének " +
+                                "1900 után és a mai dátum között kell lennie.", Toast.LENGTH_SHORT)
+                                .show();
                     }
                 }
                 catch (NumberFormatException e) {
-                    Toast.makeText(getApplicationContext(), "Az üzembehelyezés évének számnak kell lennie", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Az üzembehelyezés évének " +
+                            "számnak kell lennie", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -144,11 +155,6 @@ public class InsertActivity extends AppCompatActivity {
     }
 
     private void disableButton() {
-        if (joGyarto && joModell && joEv) {
-            btnFelvetel.setEnabled(true);
-        }
-        else {
-            btnFelvetel.setEnabled(false);
-        }
+        btnFelvetel.setEnabled(joGyarto && joModell && joEv);
     }
 }

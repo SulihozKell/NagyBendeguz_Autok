@@ -22,13 +22,15 @@ public class MainActivity extends AppCompatActivity {
         btnKereses.setOnClickListener(v -> {
             String item = keresesItem.getText().toString().trim();
             if (!item.isEmpty()) {
-                Intent keresesre = new Intent(MainActivity.this, SearchResultActivity.class);
+                Intent keresesre = new Intent(MainActivity.this, SearchResultActivity
+                        .class);
                 keresesre.putExtra("itemKulcs", item);
                 startActivity(keresesre);
                 finish();
             }
             else {
-                Toast.makeText(getApplicationContext(), "A mező nem lehet üres!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "A mező nem lehet üres!",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

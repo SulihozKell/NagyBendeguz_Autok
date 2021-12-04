@@ -29,9 +29,12 @@ public class SearchResultActivity extends AppCompatActivity {
             StringBuilder stringBuilder = new StringBuilder();
             if (kiir.getCount() != 0) {
                 while (kiir.moveToNext()) {
-                    stringBuilder.append("Gyártó: ").append(kiir.getString(0)).append(System.lineSeparator());
-                    stringBuilder.append("Modell: ").append(kiir.getString(1)).append(System.lineSeparator());
-                    stringBuilder.append("Üzembehelyezés éve: ").append(kiir.getString(2)).append(System.lineSeparator());
+                    stringBuilder.append("Gyártó: ").append(kiir.getString(0))
+                            .append(System.lineSeparator());
+                    stringBuilder.append("Modell: ").append(kiir.getString(1))
+                            .append(System.lineSeparator());
+                    stringBuilder.append("Üzembehelyezés éve: ").append(kiir.getString(2))
+                            .append(System.lineSeparator());
                     stringBuilder.append(System.lineSeparator());
                 }
             }
@@ -41,7 +44,8 @@ public class SearchResultActivity extends AppCompatActivity {
             gyartoOsszesAutoja.setText(stringBuilder.toString());
         }
         else {
-            Toast.makeText(getApplicationContext(), "Érvénytelen adat!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Érvénytelen adat!", Toast.LENGTH_SHORT)
+                    .show();
         }
 
         searchVisszaMain.setOnClickListener(v -> {
