@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + TABLE_NAME + "(" +
-                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + // NOT NULL felesleges
                 COL_GYARTO + " TEXT NOT NULL," +
                 COL_MODELL + " TEXT NOT NULL," +
                 COL_UZEMBE + " INT NOT NULL" +
@@ -68,7 +68,6 @@ public class DBHelper extends SQLiteOpenHelper {
             kisebbHarom -= 3;
         }
         catch (NumberFormatException e) { }
-        //COL_UZEMBE + " LIKE ? OR
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT " + COL_GYARTO + ", " + COL_MODELL + ", " + COL_UZEMBE +
                         " FROM " + TABLE_NAME + " WHERE " + COL_GYARTO + " LIKE ? OR "
